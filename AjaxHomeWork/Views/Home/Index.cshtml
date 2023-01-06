@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles{
+
+}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">中壢光影電影館(光影一館)</h5>
+        <h6 class="card-subtitle mb-2 text-muted">2022/1/15起開館時間改為週二-日 13:00-21:00 (週一休館)</h6>
+        <p class="card-text">透過主題選片、影人映後座談，帶你看遍世界、吸收滿滿藝術能量，逢週六還有親子電影院，全家大小一同無料觀影，開心樂無限！</p>
+        <a href="http://www.taoyuan.arts-cinema.com/" class="card-link">官方網站</a>
+        <a href="https://travel.tycg.gov.tw/zh-tw/Travel/Attraction/1482" class="card-link">官方介紹</a>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/travel.js"></script>
+    <script>
+        // 把表格做出來 用$.getJSON將資料讀成類似Array 再用$.each把全部的資料抓出來
+        $.getScript('/js/travel.js', function (data) {
+            console.log(data)
+            data.each(index,data){
+                console.log(data.Name)
+            }
+            
+        // console.log(County.name)
+        //把縣市丟進下拉選單
+      
+        })
+
+
+    </script>
+
+}
+

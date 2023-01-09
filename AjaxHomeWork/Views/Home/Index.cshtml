@@ -1,37 +1,64 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index";
 }
 
-@section Styles{
 
-}
-
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">中壢光影電影館(光影一館)</h5>
-        <h6 class="card-subtitle mb-2 text-muted">2022/1/15起開館時間改為週二-日 13:00-21:00 (週一休館)</h6>
-        <p class="card-text">透過主題選片、影人映後座談，帶你看遍世界、吸收滿滿藝術能量，逢週六還有親子電影院，全家大小一同無料觀影，開心樂無限！</p>
-        <a href="http://www.taoyuan.arts-cinema.com/" class="card-link">官方網站</a>
-        <a href="https://travel.tycg.gov.tw/zh-tw/Travel/Attraction/1482" class="card-link">官方介紹</a>
-    </div>
+<div id="div1" style="display:flex; flex-wrap:wrap ">
 </div>
+
 @section Scripts{
-    <script src="~/js/travel.js"></script>
+    <script src="~/.././js/travel.js"></script>
     <script>
-        // 把表格做出來 用$.getJSON將資料讀成類似Array 再用$.each把全部的資料抓出來
-        $.getScript('/js/travel.js', function (data) {
-            console.log(data)
-            data.each(index,data){
-                console.log(data.Name)
-            }
-            
-        // console.log(County.name)
-        //把縣市丟進下拉選單
-      
+        //取得DIV1物件
+        let Div1 = document.getElementById("div1");
+        //新增一個空節點這樣可減少畫面更新
+        let Fragment = document.createDocumentFragment();
+        //forEach DATAS裡的obj
+        DATAS.forEach(function (obj) {
+            //新增一個Div1
+            let newDiv1 = document.createElement("div");
+            //加上ClassName
+            newDiv1.className = "card";
+            //加上CSS屬性
+            newDiv1.style = "width: 18rem;";
+            //新增一個Div
+            let newDiv = document.createElement("div");
+            newDiv.className = "card-body";
+
+            let newH5 = document.createElement("h5");
+            newH5.className = "card-title";
+            //將新增的H5內放入obj.Name
+            newH5.innerText = obj.Name;
+            newDiv.appendChild(newH5);
+            let newH6 = document.createElement("h6");
+            newH6.className = "card-subtitle mb-2 text-muted";
+            //將新增的H6內放入obj.Add
+            newH6.innerText = obj.Add;
+            newDiv.appendChild(newH6);
+            let newp = document.createElement("p");
+            newp.className = "card-text";
+            //將新增的p內放入obj.Toldescribe
+            newp.innerText = obj.Toldescribe;
+            newDiv.appendChild(newp);
+            let newa1 = document.createElement("a");
+            newa1.className = "card-link"
+            //將新增的a1的連結改成obj.TYWebsite
+            newa1.href = obj.TYWebsite;
+            newa1.innerText = "桃園觀光導覽"
+            newDiv.appendChild(newa1);
+            let newa2 = document.createElement("a");
+            newa1.className = "card-link"
+            //將新增的a2的連結改成obj.Website
+            newa2.href = obj.Website
+            newa2.innerText = "官方網站"
+            newDiv.appendChild(newa2);
+            newDiv1.appendChild(newDiv)
+            Fragment.appendChild(newDiv1);
         })
+        Div1.appendChild(Fragment);
+
 
 
     </script>
-
 }
 

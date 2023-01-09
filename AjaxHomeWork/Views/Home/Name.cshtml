@@ -1,0 +1,29 @@
+﻿@section Styles{
+
+}
+@{
+    ViewData["Title"] = "Name";
+}
+
+<h1>Name</h1>
+<input id="name" name="name" type="text"></input>
+<a id="a"></a>
+
+@section Scripts{
+      
+    <script>
+      const xhr = new XMLHttpRequest();
+      const input =  document.getElementById("name");
+      const a = document.getElementById("a");
+      input.addEventListener("change",()=>{
+                 xhr.addEventListener("load",()=>{
+                     let text = xhr.responseText;
+                     a.innerHTML=text;
+                 })
+            xhr.open("get", `@Url.Content("/api/Name?name=${input.value}")`)
+            xhr.send();
+      })
+    </script>
+
+}
+
